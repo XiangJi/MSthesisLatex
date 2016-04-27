@@ -1,0 +1,30 @@
+Version 0.23: Sat Nov 22 10:52:59 EST 2003
+- Separated the changelog from the readme.
+- Renamed the makefile to GNUmakefile
+- Improved handling of empty figures directory
+- Made it easier to use your own styles and whatnot in the styles directory
+
+Version 0.22: Thu Jan 23 23:32:36 EST 2003
+- Incorporated John Regehr's Tex4HT configuration file to increase TeX's
+  capacity. (Thanks to Nicolas Christin <nicolas@cs.Virginia.EDU> for
+  suggesting this change, and patching the Makefile to take advantage of it.)
+
+Version 0.21: Tue Aug 20 22:11:34 EDT 2002
+- Added a couple LaTeX features
+- Temp directory name is now randomly generated
+- The date on the title page and signature page is now *not*
+  generated. (Depends on when you officially graduate.)
+- I'm done with my dissertation (woohoo!), so future updates will
+  likely come from other people.
+- All figures are copied now, since people may manually create pdf
+  versions
+
+Version 0.20:
+- Oops. Forgot to do changelog. :( I think:
+- Added hyperref package for hyperlinks in PDF
+
+Version 0.10: Tue Apr 24 17:50:53 EDT 2001
+- Created by David Coppit (http://coppit.org/) based on John Regehr's
+  (http://regehr.org/john/) dissertation.
+- Fixed a bug in latexmk and submitted a patch. (The version in bin is
+  not "official".)

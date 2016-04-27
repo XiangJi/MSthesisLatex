@@ -1,0 +1,51 @@
+
+Over the past decade, the high-performance research-and-education (R\&E) networking
+community that supports scientific computing has invested in developing architectures,
+protocols, and
+software controllers to support rate-guaranteed
+dynamic Layer-2 (L2) path services \cite{1541694,4444698,4374315,1497551,4146687,OSCARS,OESS,1742-6596-396-4-042065}.
+Applications include
+(i) large dataset transfers \cite{UVA-CTRQ2013},
+(ii) reliable multicast of file stream \cite{ji2015file},
+(iii) high-rate delay-sensitive interactive
+applications such as remote visualization and remote
+instrument control, and (iii) resource isolation in virtualized networks \cite{GENI}.
+
+To support rate-guaranteed dynamic L2 path services,
+two components are required. \emph{First},
+switches/routers should have data-plane support for classifying packets into flows, policing flows on ingress ports to ensure that they do not exceed their rate allocations, and scheduling packets on egress ports according to their flow-rate allocations. \emph{Second}, control-plane support
+is required for admission control to check whether sufficient bandwidth resources are available before accepting a path-setup request, provisioning the path prior to usage (which means setting label mappings in switches for data-plane packet forwarding), and releasing resources and label mappings upon completion of usage. The introduction of OpenFlow/SDN technologies reduces the barriers to deploying dynamic rate-guaranteed L2-path service since the required control-plane software can be implemented in an external SDN controller rather than in switches.
+
+Considerable advances have been made in enabling dynamic L2-path service.
+\emph{First}, control-plane protocols have been specified and are being standardized. These
+include Inter-Domain Controller Protocol (IDCP) \cite{IDCP} and the
+Open Grid Forum Network Service Interface Connection Services (NSI CS) version 2.0 \cite{NSI}. Both protocols support
+inter-domain signaling for advance-reservation and provisioning of rate-guaranteed
+dynamic L2 paths. \emph{Second}, Internet2 and ESnet, the two major US backbone Research-and-Education
+Network (REN) providers, have
+deployed SDN controllers and Layer-2 switches to
+support dynamic L2 path service. These controllers
+include Open Exchange Software Suite (OESS)\cite{OESS} and
+On-Demand Secure Circuits and Advance Reservation System (OSCARS)\cite{OSCARS}. OESS is an intra-domain
+SDN controller that controls switches via OpenFlow, while
+OSCARS supports inter-domain service.
+
+The \emph{contributions} of this work are that we leveraged an existing deployment
+called Dynamic Network System (DYNES) \cite{1742-6596-396-4-042065}, in which small SDNs were deployed
+in multiple university campuses and regional RENs, to test multi-domain dynamic L2 path service. This thesis
+offers insights into the complex issues that we encountered in deploying OESS and OSCARS in multiple domains (organizations), and describes the problems we encountered while provisioning inter-domain dynamic L2 paths. These problems can be solved to continue growing this dynamic L2-path service. The work presented in this chapter was
+published in ACM NDM 2015 \cite{tepsuporn2015multi}.
+
+The \emph{novelty} of this work is that it reports on a multi-domain SDN service in
+which an inter-SDN-controller protocol is used for cooperative dynamic L2-path reservation and provisioning. Prior papers on SDN, e.g., Google B4  \cite{Jain:2013:BEG:2486001.2486019} and Microsoft's SWAN \cite{Hong:2013:AHU:2486001.2486012} are single-domain deployments. The GENI stitching approach
+\cite{GENI-stitching} uses a tree model
+that is designed to support network researchers. Our objective is to create
+a scalable solution for a broader range of use cases.
+Previous work on DYNES \cite{1742-6596-396-4-042065} described the use of OSCARS, and data-plane experiments. Our work builds on this prior work and makes the new contributions listed above.
+
+The \emph{impact} of this work can be far-reaching. Our dynamic L2 service deployment is comparable to the early ARPAnet deployment of IP-routed service in 1970, when there were fewer than 10 connected universities. Just as ARPAnet grew into today's Internet with its IP-routed (L3) service, our seed deployment of a multi-domain rate-guaranteed dynamic L2 path service reaching 8 campuses could grow into a global-scale service, offering an opportunity for new delay-sensitive applications that are not supported well on today's best-effort IP service.
+
+Section~\ref{sec:control-plane} describes the control plane software OESS and OSCARS, the provisioning process of the integrated system.
+Section~\ref{sec:mdsdn} describes our experience of equipment setup, OESS GUI for reserving an OpenFlow path, hosts configuration for path provisioning.
+Section~\ref{sec:insights} describes the lessons we learned from the experiments, the scalability of the system, and the troubleshooting process.
+Section~\ref{sec:mdvlan} describes my experiments from an inter-domain multi-point VLAN, basically the process of provisioning by AL2S OESS and data plane work. 

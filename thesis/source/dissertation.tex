@@ -1,0 +1,94 @@
+% ALSO SEE TWOSIDE BOOLEAN BELOW
+%\documentclass[11pt,twoside]{mybook} 
+%\documentclass[11pt,twoside,openany]{mybook} 
+\documentclass[11pt,oneside,openany]{mybook} 
+
+% Not processing with tth
+\newif\iftth
+\tthfalse
+
+% Not processing with tex4ht
+\newif\ifht
+\htfalse
+
+% For nice hyperlinks in PDF. hypertexnames=false helps prevent spurious
+% warnings about repeated target names. Also hyperfootnotes=false because
+% footnote hyperlinks don't seem to work.
+%\usepackage[pdfborder={0 0 0}, plainpages=false, hypertexnames=false, hyperfootnotes=false, pdfpagelabels]{hyperref}
+\usepackage[pdfborder={0 0 0}, plainpages=false, pdfpagelabels]{hyperref}
+
+\usepackage{tabularx}
+
+% ADDed: for multirow table
+\usepackage{multirow}
+
+\usepackage{color}
+\usepackage{cite}
+%\usepackage{subfig,graphicx}
+\usepackage{url}
+\usepackage{stfloats}
+\usepackage{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage{array}
+\usepackage{mdwlist}
+%\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{multirow}
+\usepackage{changepage}
+\usepackage{acronym}
+% correct bad hyphenation here
+\renewcommand{\paragraph}[1]{\medskip\noindent{\bf #1:}}
+
+
+% Set to true for two-sided output. (Fixes margins)
+\newif\iftwoside
+\twosidefalse
+
+% Set to true for draft mode. (Puts a "do not distribute" warning, and
+% leaves out the list of figures and list of tables.)
+\newif\ifdraft
+\draftfalse
+
+% Force single spacing.
+\newif\ifsingle
+\singlefalse
+
+% Use postscript Times, Helvetica scaled, Courier condensed fonts
+\usepackage{pslatex}
+
+% For \singlespacing, \onehalfspacing, \doublespacing, and
+% \begin{spacing}{###}
+\usepackage{setspace}
+\doublespacing
+
+\input{texstuff}
+
+\input{abbreviations}
+
+% Teach LaTeX how to hyphenate some words
+\hyphenation{par-a-digm ap-pli-ca-tion ap-pli-ca-tions pur-pose
+ad-min-is-tra-tor}
+
+
+% Set the depth for the table of contents to 1 for non-draft output
+\ifdraft
+\else
+\setcounter{tocdepth}{1}
+\fi
+
+% Set the maximum allowed section depth
+\setcounter{secnumdepth}{5}
+
+\begin{document}
+
+\input{body}
+
+\end{document}
+

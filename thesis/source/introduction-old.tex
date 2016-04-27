@@ -1,0 +1,97 @@
+\chapter{Introduction}
+\label{sec:intro}
+
+In a project called Unidata Internet Data Distribution (IDD),
+the University Corporation of Atmospheric Research (UCAR)
+distributes meteorology data to 240 institutions on a near-real-time basis\cite{IDD}.
+The Unidata IDD project has been in operation since 1995, and currently serves 260 institutions.
+The term \emph{feedtype} is used for
+a stream of \emph{data products (files)} created by one or more
+sources. For example, the NEXRAD2 feedtype consists of files created with
+data from radar sites. Other sources of meteorological data include
+satellites, computer models, lightning, etc.
+The software used for this data distribution is called Local Data Manager (LDM) \cite{IDD}. 
+
+The current version, LDM version 6 (LDM6), is used for data distribution over the Internet, and streams of files carrying meteorological data are served to hundreds of receivers every day. The current solution uses application-layer (AL) multicasting. In application-layer multicasting, data packets are
+replicated at end hosts. For each meteorological data subscriber, LDM6 server host at UCAR has to establish a unicast TCP connection for data delivery. Each file is sent out multiple times by the server. Thus, UCAR server receives data from original meteorological data sources at 11GB/hr, but sends out data to its downstream servers at 600GB/hr. The current deployed solution is unsustainable in terms of UCAR server computing capacity and access link bandwidth, as the number of data subscribers and number of feedtypes grow.
+
+This scalability problem can be addressed with a solution in which network switches/routers perform the multicasting action instead of the end hosts. However, native IP multicast has proven to be challenging \cite{Ratnasamy:2006:RIM:1159913.1159917} because of the complexity of distributed IP multicast routing protocols \cite{rfc3618}, and the variable congestion levels on paths to different receivers. Moreover, the security of IP multicast \cite{hardjono2000ip} is another major factor, which impedes the wider deployment of IP multicast.
+
+New networking technologies, such as OpenFlow and Software Defined Networks (SDN) \cite{SDNs}, enable the use of switch-based Layer-2 multicast, which overcomes the unsustainable problem of application-layer multicast and routing protocols complexity problem of native IP multicast. Since there is a setup phase in which the SDN controller provisions the L2 multipoint virtual topology, distributed multicast inter-domain routing protocols are not required. Also, rate guarantees can be provided for these L2 multipoint virtual topologies thus ensuring that there is no differential congestion levels on the paths from the sender to the various receivers. Therefore, LDM7, a new version of LDM, is implemented to run over OpenFlow/SDN path-based L2 networks.
+
+For determining an appropriate rate for a L2 multipoint virtual topology, a method is developed and evaluated based on the traffic characteristics of meteorological data file-streams and performance constraints. There are silence periods between files within the file-streams, and the rate at which the meteorological data is generated varies. This makes the problem challenging. A buffer is used at the
+sending host to smooth out traffic bursts. The buffer size should
+be computed along with the rate.
+
+For deploying and testing LDM7, Internet2's Dynamic Network System (DYNES) \cite{1742-6596-396-4-042065} and Advanced Layer-2 Service (AL2S) \cite{AL2S} are leveraged. This infrastructure allows users to create their own L2 multipoint virtual topology among inter-domain endpoints over the Internet2 AL2S backbone network. This thesis evaluates the current inter-domain wide-area L2 path-based services and offers insights into the complex issues that we encountered for provisioning inter-domain dynamic L2 paths. 
+
+
+
+\section{Background}
+\label{sec:background}
+
+\subsection{Software-Defined Networking}
+Emerging network technology Software Defined Networking (SDN) \cite{SDNs} allows network administrators to manage network services by software. The core idea of SDN is to decouple the control plane, which decides where the network traffic should be sent from the data plane, which forwards network traffic to selected destination. SDN enhances the benefits of increasing network resource flexibility and reducing control plane software development and maintenance costs. The introduction of SDN and OpenFlow \cite{OpenFlow} technologies reduces the barriers to deploying rate-guaranteed L2-path service since the required control-plane software can be implemented in an external SDN controller rather than in switches.
+
+\subsection{Internet2's Advanced Layer 2 Service (AL2S)}
+Internet2 \cite{Internet2} is a non-profit institution, which provides US-wide research and education networks (RENs). Internet2's Advanced Layer 2 Service (AL2S) \cite{AL2S} enables scalable and flexible access to a global network, where users can create their own Layer-2 circuits (VLANs) between endpoints on the Internet2 AL2S backbone network and beyond. AL2S users are provided a SDN control plane software to provision static or dynamic, point-to-point or multipoint, intra-domain or inter-domain VLANs.  
+
+% A virtual circuit is a dedicated link which can transport data packet between fixed source and destination.   Compared to datagram service, virtual circuit provides guaranteed bandwidth, predictable performance, less loss rate, and faster switching. But there are also some drawbacks of virtual circuits. First, network administrators have to setup the circuits before using this service. However, SDN technology makes this easier than ever before. Second, virtual circuits are usually assigned with a very high speed bandwidth, but most of the bandwidth might be wasted so that the utilization of these dedicated links are low.
+
+% \section{Problem Statements}
+% Repeat from 
+
+% \section{Motivation}
+% \label{sec:motivation}
+
+\section{Key contributions}
+\subsection{File-stream Distribution Application on SDN}
+The contributions of this work are (i) Characterization of the top-five file-streams distributed by this meteorology application, (ii) Algorithms for rate and buffer size computation for
+file-stream distribution on an L2 multipoint virtual topology, (iii) Application and evaluation of the algorithm for the top-five file-streams, and (iv) Comparison of FCFS and RR modes for file multiplexing.
+
+\paragraph{Key findings}
+(i) Our solution was based, not
+on models, but on actual traffic characteristics. These
+characteristics, such as right-skewed file size and file
+inter-arrival times, and variability from day-to-day,
+are likely to hold for other types of file-streams.
+
+(ii) Our solution, based on a empirical method and an exponential weighted moving average scheme, could therefore have wide applicability.
+Evaluation of our method with real traffic showed that
+while throughput constraints can be met by selecting a suitably high
+rate, utilization varies based on the burstiness of the file stream.
+However, if rate-guaranteed Layer-2 services are offered
+on the same network as best-effort IP services, and packet schedulers
+are configured to operate in work-conserving mode, the utilization levels
+of the L2 multipoint topologies are not of concern. 
+
+(iii)We also found that for this application, required rates are only on
+the order of Mbps, which is a small fraction of current-day Gb/s networks.
+
+\subsection{A Multi-Domain SDN for Dynamic Layer-2 Path Service}
+The \emph{contributions} of this work are that we leveraged an existing deployment
+called Dynamic Network System (DYNES) \cite{1742-6596-396-4-042065}, in which small SDNs were deployed
+in multiple university campuses and regional RENs, to test multi-domain dynamic L2 path service. This thesis
+offers insights into the complex issues that we encountered in deploying OESS and OSCARS in multiple domains (organizations), and describes the problems we encountered while provisioning inter-domain dynamic L2 paths. These problems can be solved to continue growing this dynamic L2-path service.
+
+\paragraph{Key findings}
+%from HPDC
+(i) Using OSCARS and OESS, instead of other SDN controllers, simplified the process of configuring inter-domain L2 paths. Control-plane software development for dynamic L2 path-based services is still in its infancy, and hence there are other ongoing efforts besides OSCARS and OESS, e.g., the GENI network stitching \cite{GENI-stitching} effort. However, there is a strategic advantage in using OESS and OSCARS controllers because these controllers are deployed by Internet2 and ESnet, the two US-wide core RENs. Clearly inter-domain services are required for scalability since the value of the service grows with the number of connected endpoints \cite{odlyzko2005refutation}.
+
+(ii) As users of OESS and OSCARS, we found pitfalls that can lead to path-setup failures, and also developed a set of methods for debugging intra-domain or inter-domain path-setup failures.
+
+(iii) To extend and use L2 paths all the way to end hosts, privileged login access is required to configure VLANs on Ethernet Network Interface Cards (NICs) and to set IP addresses for those VLANs. The IP layer is required to enable the use of existing applications without modifications. File-transfer Software-as-a-Service (SaaS) solutions, such as Globus Online \cite{allen2012software}, are better positioned to obtained privileged login access on behalf of its users. Therefore this SaaS approach is a potential solution to the privileged login access need. 
+
+
+\section{Thesis Organization}
+The rest of the thesis is organized into three chapters.
+
+Chapter 2 presents a new software architecture for meteorological data distribution application LDM. The new approach integrated with emerging OpenFlow/SDN technologies overcomes the unsustainable problem of application-layer multicast and complex routing protocols problem of native IP multicast. Characterization of IDD feedtypes is evaluated by collecting the metadata (size and creation-time) for top five feedtypes from LDM UCAR server. An algorithm is designed for determining the rate of the Layer-2 multipoint virtual topology, and the size of the sending-host buffer based on IDD feedtypes traffic characterization. An empirical method is proposed to determine the ideal rate and buffer size based on a day's traffic, which are then used along with the current rate and buffer size in an Exponential Weighted Moving Average (EWMA) scheme to determine the rate and buffer size for the next day. The evaluation of our method using metadata obtained for the top five file-streams is found to be effective.  
+
+Chapter 3 presents our experience in deploying a multi-domain Software-Defined Network(SDN) that supports dynamic Layer-2 (L2) path service. The data plane experiments over inter-domain multipoint L2 paths are demonstrated with analysis and detailed explanations.   
+
+Chapter 4 concludes the thesis and identifies future work items.
+
+
+
+

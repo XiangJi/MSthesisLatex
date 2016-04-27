@@ -1,0 +1,69 @@
+
+Section~\ref{sec:config-ovhd} describes the configuration
+overhead required to run this dynamic L2 path service, and addresses
+the question of scalability.
+Section~\ref{sec:ckt-provisioning} describes
+our experience as users of OSCARS and OESS in configuring
+inter-domain L2 paths.
+Finally, Section~\ref{sec:other-challenges} describes
+other challenges we faced in the course of this deployment.
+
+\subsection{Configuration Overhead and Scalability}
+\label{sec:config-ovhd}
+A number of administrator
+actions are required to configure the OpenFlow switches, OESS and OSCARS. The
+larger the number of such required actions, the greater the
+potential for administrator errors.
+Effort is required to reduce the number of required administrator
+actions wherever possible.
+
+To achieve a global-scale dynamic L2 path-service deployment,
+the current solution for making available endpoint information
+through the OESS Web user interface to allow for user selection of path endpoints
+needs
+to be changed. A potential solution for allowing users to find the
+endpoint identifiers for hosts that support dynamic L2 path service is
+to incorporate this service into the widely deployed DNS system. If a user
+has the domain name of a host that supports dynamic L2 path service, a new DNS
+resource record could provide the translation of this name to the endpoint
+identifier required by OESS and OSCARS.
+
+Finally, the scalability and usability of the pS Topology Service should be assessed.
+As described in Section~\ref{sec:control-plane}, the OSCARS topology service
+pushes the topology of a domain to the pS Topology Service, allowing OSCARS
+in other domains to request topology information when needed. While this open
+topology sharing approach works in the REN community, it is not suitable
+for commercial providers. Contrast this approach to the more practical Border Gateway Protocol solution of sharing only address reachability across domains.
+Therefore, this part of the OSCARS design needs to be revisited.
+
+
+\subsection{Path Provisioning and Testing}
+\label{sec:ckt-provisioning}
+
+The OESS and OSCARS software systems were relatively stable and their Web user interfaces were fairly easy to navigate. In general, these controllers are
+robust and allowed us to set up and tear down inter-domain paths dynamically.
+However, three aspects need improvement: error reporting, path setup delay,
+and path failure debugging.
+
+The error reporting functionality of OSCARS needs to be enhanced. Path setup failures
+occur due to a lack of bandwidth, unavailability of a requested VLAN ID, or due to an expired certificate. In all these cases, while OSCARS reports a failed setup attempt,
+the error messages are cryptic and do not offer users a decipherable reason for the failure.
+
+The second issue relates to setup delay and the OSCARS approach of handling only one path setup at a time.
+In particular, a failed path setup attempt causes OSCARS to wait for a user-configured timeout interval, which is currently set to 15 min. While this solution is sufficient for low call arrival rates, a programmatic test with multiple path setup-and-release attempts experienced excessive delays.
+
+Finally, the lack of L2 connectivity tools comparable to L3 tools such as \texttt{ping} and \texttt{traceroute} made it difficult to identify the domain in which the L2 connectivity
+was broken.
+We used three methods to debug such connectivity issues. First, we had campus and regional REN administrators configure a specified private IP address to a specified VLAN on the port of their domain's edge router that is connected to the next domain (toward Internet2). This allowed us to use L3 tools
+to verify that static VLANs across each domain were operational. Second, we used observatory hosts located at Internet2 PoPs whose ports (with specified VLANs) were made available by Internet2 to DYNES users for L2 path testing. This allowed us to create dynamic L2 paths between each campus DYNES switch and an observatory host's Internet2 router port for single campus-and-regional segment testing. Finally, we used GRNOC's routerproxy tool \cite{routerproxy} to observe packet counts at router ports while sending data between campus FDTs on configured VLANs to localize problems. These methods are rudimentary and suitable for the REN community,
+but better methods leveraging OpenFlow features need to be developed.
+
+\subsection{Other Challenges}
+\label{sec:other-challenges}
+In the course of one year, we experienced software upgrades to OSCARS,
+X.509 certificate expirations, and even network connectivity changes (regional networks
+were moved to AL2S from ION for their Internet2 access). Each of
+these changes required corresponding administrative actions, sometimes in several
+DYNES sites and Internet2. For example, OSCARS server peerings and topology
+files had to be updated
+when a regional moved its access link from Internet2's Interoperable On-demand Network (ION) to AL2S.

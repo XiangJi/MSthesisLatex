@@ -1,0 +1,41 @@
+\begin{table*}[!ht]
+\centering
+\caption{Notation}
+\begin{tabular}{|l|p{12.5cm}|}
+\hline
+\multicolumn{2}{|c|}{Input parameters}\\ \hline
+$i$ and $j$ & file indexes\\ \hline
+$(t,t+k\tau)$ & $k^{th}$ holding interval \\ \hline
+$a_i$ & arrival time of file $i$ \\ \hline
+$s_i$ & size of file $i$\\ \hline
+\multicolumn{2}{|c|}{System parameters}\\ \hline
+$(\mathbb{G},\beta)$ & Fraction $\beta$ of files can experience multicast throughput less than $\mathbb{G}$ in RR mode\\ \hline
+$(\mathbb{W},\alpha)$ & Fraction $\alpha$ of files can experience wait times greater than $\mathbb{W}$ in FCFS mode\\ \hline
+$r_k$ & configured rate used in the $k^{th}$ holding interval\\ \hline
+$b_k$ & configured buffer size used in the $k^{th}$ holding interval \\ \hline
+\multicolumn{2}{|c|}{Intermediate values}\\ \hline
+$R_k$ & ideal computed rate for the $k^{th}$ holding interval\\ \hline
+$B_k$ & ideal computed buffer size for the $k^{th}$ holding interval \\ \hline
+$q(t)$ & sending-host buffer (queue) occupancy at time $t$ in ideal case \\ \hline
+%$n(t)$ & number of files in the sending-host buffer at time $t$ in ideal case \\ \hline
+$d_i$ and $d^{\prime}_i$  & departure time of file $i$, actual and ideal, respectively\\ \hline
+$w_i$ and $w^{\prime}_i$ & FCFS wait time experienced by file $i$, actual and ideal, respectively \\ \hline
+$g_i$ and $g^{\prime}_i$ & multicast file-transfer throughput of file $i$, actual and ideal, respectively\\ \hline
+$\textbf{A}_k$ & set of files that arrived in the $k^{th}$ holding interval \\ \hline
+$\textbf{D}_k$ and $\textbf{D}^{\prime}_k $& set of files that departed in the $k^{th}$ holding interval, actual and ideal, respectively \\ \hline
+$N_k$ and $N^{\prime}_k $ & number of files that arrived and departed in the $k^{th}$ holding interval, actual and ideal, respectively \\ \hline
+$\textbf{M}_k$ and $\textbf{M}^{\prime}_k $ & RR: set of files that experienced multicast throughput lower than $\mathbb{G}$, actual and ideal, respectively\\ \hline
+$\textbf{V}_k$ and $\textbf{V}^{\prime}_k $ & FCFS: set of files that experienced wait times greater than  $\mathbb{W}$, actual and ideal, respectively\\
+\hline
+$\textbf{L}_k$ & set of files that were dropped due to lack of space in the sending-host buffer in the $k^{th}$ holding interval \\ \hline
+\multicolumn{2}{|c|}{Output metrics}\\ \hline
+$U_k$ & path utilization in the $k^{th}$ holding interval \\ \hline
+$\Theta_k$ & mean multicast throughput of files that arrived and departed  in the $k^{th}$ holding interval\\ \hline
+$\delta_k$ & dropped file rate in the $k^{th}$ holding interval\\ \hline
+$\eta_k$ & RR: throughput-violation rate in the $k^{th}$ holding interval\\ \hline
+$\gamma_k$  & FCFS: waiting-time violation rate in the $k^{th}$ holding interval\\ \hline
+\end{tabular}
+\label{tab:notation}
+\end{table*}
+
+

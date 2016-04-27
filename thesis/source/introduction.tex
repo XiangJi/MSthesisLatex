@@ -1,0 +1,110 @@
+\chapter{Introduction}
+\label{sec:intro}
+
+In a project called Unidata Internet Data Distribution (IDD),
+the University Corporation of Atmospheric Research (UCAR)
+distributes meteorology data to 260 institutions on a near-real-time basis\cite{IDD}.
+The Unidata IDD project has been in operation since 1995, and currently serves 260 institutions.
+The term \emph{feedtype} is used for
+a stream of \emph{data products (files)} created by one or more
+sources. 
+For example, the NEXRAD2 feedtype consists of files created with
+data from radar sites. Other sources of meteorological data include
+satellites, computer models, lightning, etc. A total of 30 feedtypes are distributed currently.
+The software used for this data distribution is called Local Data Manager (LDM) \cite{IDD}.
+
+The current version, LDM version 6 (LDM6), is used for data distribution over the Internet, and streams of files carrying meteorological data are served to hundreds of receivers every day. The current solution uses application-layer (AL) multicasting. In application-layer multicasting, data packets are
+replicated at the sending hosts. For each meteorological data subscriber, a unicast TCP connection
+is required from the upstream LDM6 server running at UCAR to each downstream LDM6 server that has
+subscribed to one or more feedtypes. Thus, each file is transmitted multiple times by the upstream server. Currently, UCAR server receives data from original meteorological data sources at 20 GB/hr, but sends out data to its downstream servers at 1 TB/hr. The current deployed solution is difficult to sustain in terms of UCAR server computing capacity and access link bandwidth as the number of data subscribers and number of feedtypes are growing.
+
+This scalability problem can be addressed with a solution in which network switches/routers perform the multicasting action instead of the end hosts. However, native IP multicast has proven to be challenging \cite{Ratnasamy:2006:RIM:1159913.1159917} because of the complexity of inter-domain IP multicast routing protocols \cite{rfc3618}, and the variable congestion levels on paths to different receivers. Moreover, the security of IP multicast \cite{hardjono2000ip} is another factor that has impeded the wider deployment of IP multicast.
+
+New networking technologies, such as OpenFlow and Software Defined Networks (SDN) \cite{SDNs}, enable the use of switch-based Layer-2 multicast, which addresses the scalability problem of application-layer multicast and
+the interdomain routing-protocols problem associated with native IP multicast. Since there is a setup phase in which the SDN controller provisions the L2 multipoint virtual topology, distributed multicast inter-domain routing protocols are not required. Also, rate guarantees can be provided for these L2 multipoint virtual topologies thus ensuring that there is no differential congestion levels on the paths from the sender to the various receivers. Therefore, a new version of LDM,
+LDM7, was designed and implemented to run over multipoint L2 virtual networks, in a parallel effort 
+\cite{chen2016file}.
+
+The above-described two drivers, the top-down LDM application driver, and the bottom-up new OpenFlow/SDN networking technology driver, served as motivation for the work described in this thesis.
+Section~\ref{sec:intro-problem} describes the problems addressed in this work.
+Section~\ref{sec:intro-background} offers the reader background information about SDN technologies
+and deployment.
+Section~\ref{sec:intro-contributions} summarizes our key contributions.
+
+\section{Problem Statement}
+\label{sec:intro-problem}
+
+Two problems are addressed in this work. The \emph{first} problem is to 
+determine an appropriate rate for the L2 multipoint virtual topology required to support a file-stream
+based on the traffic characteristics and performance constraints. The feedtypes distributed
+in the IDD project typically have silence periods between files, and bursty product arrivals.
+In other words, application data rate of a file-stream varies with time. This makes the problem of
+computing a fixed rate for the L2 multipoint virtual topology challenging. A buffer is used at the
+sending host to smooth out traffic bursts. The buffer size is computed along with the rate.
+
+The \emph{second} problem addresses the control-plane aspects of provisioning L2 multipoint virtual
+topologies. In a prior NSF-funded project, various universities deployed a small OpenFlow network called
+Dynamic Network System (DYNES) \cite{1742-6596-396-4-042065}. We used this infrastructure to develop and test methods to provision inter-domain L2 multipoint virtual networks between DYNES end hosts located on several university campuses. The question addressed was whether-or-not the current Research-and-Education Network (REN) 
+infrastructure was sufficient
+to deploy applications such as LDM7 across rate-guaranteed inter-domain wide-area multipoint virtual networks.
+
+\section{Background}
+\label{sec:intro-background}
+
+\subsection{Software-Defined Networking}
+Emerging Software Defined Networking (SDN) \cite{SDNs} technologies allows network administrators to configure network services by software running on servers external to switches/routers. The core idea of SDN is to decouple the control plane, which decides where the network traffic should be sent, from the data plane, which forwards network packets to their destinations. SDN technologies enable services that leverage the increased programmability of
+network switches/routers, and reduce control-plane software development and maintenance costs. For example, rate-guaranteed L2 paths and L2 multipoint virtual networks can be provisioned using an 
+external SDN controller that runs software
+implemented by any developer (many open-source SDN controllers are now available) instead of waiting for switch vendors to upgrade their switches with the required control-plane software.
+
+\subsection{SDN deployment in RENs}
+As noted earlier, DYNES networks were deployed in several university campuses. Large university campus networks
+are connected to regional RENs. For example, the University of Virginia (UVA) network is connected to the Mid-Atlantic Research Infrastructure Alliance (MARIA) network. These regional RENs are called connectors,
+as they offer universities access to a US-wide REN called 
+Internet2 \cite{Internet2}. Over 500 institutions are connected via regional RENs or directly to Internet2. 
+
+Internet2 deployed three networks, each of which offers a different type of service: (i) a network of high-end IP routers on which IP-routed (Layer-3) service, i.e., access to the Global Internet, is supported, (ii) OpenFlow capable switches on which Advanced Layer 2 Service (AL2S) \cite{AL2S} is offered, which allows users to request rate-guaranteed Layer-2 (L2) virtual circuits (using a multiplexing technology called VLAN \cite{VLAN}, (iii) Wavelength-Division Multiplexed (WDM) optical circuit switches on which Layer-1 (L1) circuit service is supported to provide users long-duration (static) high-bandwidth circuits. The AL2S network includes an SDN controller on which users are provided login access to enable each user to dynamically provisioning
+L2 virtual circuits when needed, but L1 circuit service requests are handled manually by the Internet2 staff.
+
+
+\section{Key contributions}
+\label{sec:intro-contributions}
+
+Our contributions to the two problems stated in Section~\ref{sec:intro-problem} are summarized here. This work was reported and presented in 3 publications \cite{ji2015file, tepsuporn2015multi, chen2016file}. 
+
+\subsection{Methodology for using SDNs for real-time data distribution}
+The contributions of this work are: (i) Characterization of the top-five file-streams distributed in the IDD project, (ii) Algorithms for rate and buffer size computation for
+file-stream distribution on an L2 multipoint virtual topology, (iii) Application and evaluation of the algorithm for the top-five IDD feedtypes, and (iv) Comparison of First Come First Serve (FCFS) and Round-robin (RR) modes for file multiplexing.
+
+
+
+\subsection{A Multi-Domain SDN for Layer-2 Path and Multipoint VLAN Services}
+
+The contributions of this work are that we leveraged the existing multi-campus DYNES deployment,
+regional REN and Internet2 L2 path services to provision and test multi-domain dynamic L2 path and multipoint VLAN
+services. This work offers insights into the complex issues that we encountered in deploying SDN controllers
+within the DYNES equipment at several university campuses (this work required assistance from administrators
+on the external campuses), and describes the problems we encountered while provisioning inter-domain dynamic L2 paths. Methods for solving these problems were proposed. We developed a methodology for provisioning
+inter-domain L2 multipoint VLANs and demonstrated this methodology between three university campuses.
+
+
+
+\section{Thesis Organization}
+The rest of the thesis is organized into three chapters.
+
+Chapter 2 presents a methodology for using SDNs for real-time data distribution. First, we set up an LDM6 server at UVA
+and collected the metadata (size and creation-time) for top five feedtypes from the LDM UCAR server. The data
+was then analyzed to characterize file sizes and file inter-arrival times. An algorithm was designed for determining the 
+approriate rate to use for the Layer-2 multipoint virtual topology, and the size of the sending-host buffer based on the IDD feedtype characteristics. An empirical method was proposed to determine the ideal rate and buffer size based on a day's traffic, which are then used along with the current rate and buffer size in an Exponential Weighted Moving Average (EWMA) scheme to determine the rate and buffer size for the next day. The algorithm was evaluated using metadata obtained for the top five file-streams and found to be effective.
+
+Chapter 3 presents our experiences in deploying a multi-domain SDN and using its controllers to dynamically
+ provision point-to-point Layer-2 (L2) paths. Next, a method was proposed and tested for configuring an inter-domain
+ multipoint VLAN. Data-plane experiments were executed over inter-domain point-to-point L2 paths
+ and multipoint VLANs to test connectivity. These methods will be useful for upgrading from LDM6 to
+ LDM7 for the meteorological data distribution from UCAR.
+
+Chapter 4 concludes the thesis and identifies future work items.
+
+
+
+

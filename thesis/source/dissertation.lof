@@ -1,0 +1,46 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces LDM6: Application-layer multicasting\relax }}{9}{figure.caption.7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces LDM7: Layer-2 multicasting across an SDN\relax }}{9}{figure.caption.8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Histogram of size of data products sent on June 02, 2014, for the CONDUIT feedtype\relax }}{13}{figure.caption.11}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Histogram of inter-arrival time of data products sent on June 02, 2014, for the CONDUIT feedtype\relax }}{13}{figure.caption.12}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Rate vs. time of IDD feedtypes\relax }}{14}{figure.caption.13}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces LDM7 architecture and operation\relax }}{15}{figure.caption.14}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces A comparison of per-bin mean multicast throughput values where each bin has 10\% of the files sorted by size\relax }}{25}{figure.caption.18}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Daisy-chain model used by OSCARS for inter-domain circuit reservation, provisioning, and release\relax }}{34}{figure.caption.22}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces OESS software architecture\relax }}{36}{figure.caption.23}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces OSCARS and OESS integration\relax }}{37}{figure.caption.24}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces An illustration of our multi-domain dynamic L2 path service deployment; Fast Data Transfer (FDT) server; Inter-Domain Controller (IDC); perfSONAR (pS) host; Open Exchange Software Suite (OESS); On-Demand Secure Circuits and Advance Reservation System (OSCARS); Advanced Layer 2 Service (AL2S)\relax }}{38}{figure.caption.25}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Internet2 Advanced Layer 2 Service (AL2S) Network\relax }}{39}{figure.caption.26}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces OESS UI Step 1: Choose basic characteristics for an intra-domain path\relax }}{42}{figure.caption.27}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces OESS UI Step 1: Choose basic characteristics for an inter-domain path\relax }}{42}{figure.caption.28}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces OESS UI Step 2: Selection of endpoints and VLAN IDs\relax }}{43}{figure.caption.29}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces OESS UI Step 3: Primary path selection\relax }}{44}{figure.caption.30}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces OESS UI Step 4: Backup path selection\relax }}{45}{figure.caption.31}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces OESS UI Step 5: Circuit scheduling\relax }}{45}{figure.caption.32}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces OESS UI Step 6: Review design\relax }}{46}{figure.caption.33}
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Configuring the Fast Data Transfer (FDT) host for the L2 path\relax }}{47}{figure.caption.34}
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Linux utility \texttt {ifconfig}\relax }}{49}{figure.caption.35}
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Linux utility ping\relax }}{50}{figure.caption.36}
+\contentsline {figure}{\numberline {3.16}{\ignorespaces UVA DYNES - UVA campus – MARIA- ASHB\relax }}{53}{figure.caption.37}
+\contentsline {figure}{\numberline {3.17}{\ignorespaces AL2S inter-domain multipoint circuit experiment\relax }}{54}{figure.caption.38}
+\contentsline {figure}{\numberline {3.18}{\ignorespaces AL2S OESS: Endpoints and VLAN selection\relax }}{55}{figure.caption.39}
+\contentsline {figure}{\numberline {3.19}{\ignorespaces A local multipoint VLAN configuration through the UVA DYNES switch connecting FDT, PS and IDC host\relax }}{56}{figure.caption.40}
+\contentsline {figure}{\numberline {3.20}{\ignorespaces OpenFlow flow-table entry in the UVA DYNES switch\relax }}{57}{figure.caption.41}
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Multicast application sending traffic from UVA FDT to UVA PS and UVA IDC hosts across a local multipoint VLAN\relax }}{58}{figure.caption.42}
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Multicast application sending traffic from UVA FDT to MAX FDT and IU FDT across an inter-domain multipoint VLAN\relax }}{59}{figure.caption.43}
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Wireshark display of a pcap file\relax }}{60}{figure.caption.44}
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Multicast IP address to multicast MAC address mapping\relax }}{61}{figure.caption.45}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces NGRID feedtype, histograms of the size of the data products sent on June 02, 2014\relax }}{66}{figure.caption.46}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces NGRID feedtype, histograms of inter-arrival time of data products sent on June 02, 2014, \relax }}{67}{figure.caption.47}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces NEXRAD2 feedtype, histograms of size of data products sent on June 02, 2014\relax }}{67}{figure.caption.48}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces NEXRAD2 feedtype, histograms of inter-arrival time of data products sent on June 02, 2014\relax }}{67}{figure.caption.49}
+\contentsline {figure}{\numberline {A.5}{\ignorespaces NEXRAD3 feedtype, histogram of size of data products sent on June 02, 2014\relax }}{68}{figure.caption.50}
+\contentsline {figure}{\numberline {A.6}{\ignorespaces NEXRAD3 feedtype, histograms of inter-arrival time of data products sent on June 02, 2014\relax }}{68}{figure.caption.51}
+\contentsline {figure}{\numberline {A.7}{\ignorespaces FSL2 feedtype, histogram of size of data products sent on June 02, 2014\relax }}{68}{figure.caption.52}
+\contentsline {figure}{\numberline {A.8}{\ignorespaces FSL2 feedtype, histogram of inter-arrival time of data products sent on June 02, 2014\relax }}{69}{figure.caption.53}
+\contentsline {figure}{\numberline {A.9}{\ignorespaces Rate vs. time of NEXRAD2 and NEXRAD3 feedtypes\relax }}{69}{figure.caption.54}
+\contentsline {figure}{\numberline {A.10}{\ignorespaces FSL2 feedtype\relax }}{69}{figure.caption.55}

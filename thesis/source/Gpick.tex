@@ -1,0 +1,15 @@
+\subsection{Determining throughput threshold}
+
+For our ideal path rate computation in RR mode, the minimum multicast throughput $\mathbb{G}$ should be set an appropriate value. I determine the value of  $\mathbb{G}$ by analyzing the arrival data from LDM. I collected data product's log file in LDM verbose mode for one day. For each data product, the entry in log file presents the time the product is created, the time the product is received by our host, and the size the product. With the created time and arrival time, I calculate the delay for each product. Then the arrival throughput for each product would be size divide the delay.
+
+After sorting the all the throughput for each product, we pick the 10\% quantile value for setting the $\mathbb{G}$ value.
+
+\begin{table}
+\centering
+\begin{tabular}{| c | c| c| c| c|c|} \hline
+$\mathbb{G}$ (kbps) &CONDUIT & NGRID & NEXRAD2 & NEXRAD3 & FSL2\\ \hline
+Threshold & 1 & 46 & 103 & 8 & null \\ \hline
+\end{tabular}
+\caption{The multicast throughput threshold for feedtypes }
+\label{tab:gpick}
+\end{table}

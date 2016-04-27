@@ -1,0 +1,22 @@
+\begin{table*}[!ht]
+\caption{Example NetFlow records observed for one $\gamma$ flow ID in one day; TS: Timestamp; dur: duration (sec)}
+\scalebox{0.85}{
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|} \hline
+pkts & bytes & src IP & dst IP & src port & dst port & prot. & first-pkt TS & last-pkt TS & dur (sec)\\ \hline
+\multicolumn{10}{|c|}{\textbf{Previous flow's last NetFlow record}}\\ \hline
+481 & 683020 & 6853 & 6840 & 20886 & 62362 & 6 & 1304269790.137  & 1304269820.122 & 29.98 \\ \hline
+\multicolumn{10}{|c|}{\textbf{Next flow (has 101 NetFlow records)}}\\ \hline
+173 & 245660 & 6853 & 6840 & 20886 & 62362 & 6 & 1304270709.920 & 1304270749856 & 39.93\\ \hline
+ 251 & 356420 & 6853 & 6840 & 20886 & 62362 & 6 & 1304270750.036 & 1304270809.975 & 59.93 \\ \hline
+247 & 350740 & 6853 & 6840 & 20886 & 62362 & 6 & 1304270810.282 & 1304270869.675 & 59.39 \\ \hline
+\multicolumn{10}{|c|}{There were 95 other NetFlow records with inter-report
+gaps less than $\tau$}\\ \hline
+230 & 326600 & 6853 & 6840 & 20886 & 62362 & 6 & 1304276573.971 & 1304276633.668 & 59.69 \\ \hline
+234 & 332280 & 6853 & 6840 & 20886 & 62362 & 6 & 1304276634.016 & 1304276693.903 & 59.88\\ \hline
+61 & 86620 & 6853 & 6840 & 20886 &62362 & 6 & 1304276694.116 & 1304276704.044 &9.92\\ \hline
+\multicolumn{10}{|c|}{\textbf{Next flow's first NetFlow record}}\\ \hline
+57 & 80940 & 6853 & 6840 & 20886 & 62362 &6 & 1304317369.174 & 1304317391.838 &22.66 \\ \hline
+\end{tabular}
+}
+\label{tab:example}
+\end{table*} 

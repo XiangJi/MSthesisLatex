@@ -1,0 +1,153 @@
+UVA CS Dissertation Template Version 0.22
+
+This distribution contains a skeleton LaTeX document for a
+dissertation. It's based on changes to the book.cls style file
+(mybook.cls) which go back at least 10 years.
+
+Feel free to improve this distribution and pass it on. Credits and
+changelog are at the bottom of this file.
+
+
+ACQUISITION
+
+You can find the latest version of this distribution at
+http://www.coppit.org/code/index.html
+
+Get tex4ht at http://www.cis.ohio-state.edu/~gurari/TeX4ht/mn.html
+(Be sure to get Apr 24 2001 or newer. You may also have to get updated
+files from the bugfixes link.)
+
+
+DIRECTORIES
+
+- bin: contains latexmk for building latex documents. fixbb for fixing
+  the bounding box of EPS figures. wwwis for updating IMG size
+  attributes in HTML. 
+- figures: EPS figures. PDF versions are also stored here after being
+  automatically created for pdflatex in the makefile. NOTE: generating
+  PDF figures from EPS figures with anything other than distiller is
+  not recommended, as tools like epstopdf don't compute the bounding
+  box correctly, or do funny things to fonts or lines. I ended up
+  doing the following:
+  - Use PDFWriter printer to create a PDF.
+  - Use Acrobat (not reader) to crop the page
+  - Since Acrobat 5 insists on outputting PDF 4, and latexpdf can only
+    handle PDF 3, you have to save the cropped figure as EPS. (Plus
+    you might want an EPS version.)
+  - Run the figure through distiller to convert the EPS to PDF
+- misc: Miscellaneous dissertation-related stuff
+- output: Intermediate and output files go here. (With the exception
+  of the PDF figures in the figures directory)
+- source: all the .tex and .bib files
+- styles: style files
+- build: intermediate files
+
+
+SOURCE FILES
+
+dissertation-www.tex: The dissertation formatted for HTML output
+dissertation.tex: The top-level file, with some control options
+body.tex: The "meat" of the document. Has includes for the chapters
+texstuff.tex: useful LaTeX definitions
+refs.bib: replace with your own BiBTeX bibliography
+
+Other files should be self-explanatory.
+
+
+FEATURES
+
+For your LaTeX enjoyment:
+
+- 1.67 spacing for title and copyright pages. Also for rest of
+  document unless single is true
+- single boolean: set to true for single spacing
+- tth boolean: set to true if processing with tth
+- ht boolean: set to true if processing with ht
+- draft boolean: set to true for draft copy
+- \qedsymbol: a black square for the end of proofs
+- \ifwww: allows you to tweak things for HTML output
+- figurecodeverbatim environment: for formatting code in figures
+- quotecodeverbatim environment: for formatting code in main text
+- fancyfigure: an environment for text figures (puts a line above and
+  below the figure to help offset it from the main text)
+- Ventry: an environment for terms and definitions, where the width
+  of the left column of terms is auto-computed.
+
+
+SAMPLES
+
+- http://www.cs.utah.edu/~regehr/papers/diss/
+  [This isn't based directly on this template, but uses the same style
+  and html output strategy.]
+
+
+STANDARDS
+
+The style file is believed to be fully compliant with the UVA thesis
+style requirements:
+- http://www.cs.virginia.edu/graduate/G122.pdf
+
+
+INSTALLATION
+
+- You may have to fix the #! line for the scripts in bin.
+- You may have to adjust the paths to the programs in the makefile.
+- On the UVa CS department servers, the teTeX distribution in
+  /usr/cs/teTeX is not quite new enough.  Until systems staff upgrades
+  it, you can use the one in ~dwc3q/teTeX. The makefile paths reflect
+  this.
+- There are a number of latex styles that you will need: fancyvrb,
+  cite, url, pslatex, setspace. Most likely these are already
+  installed.
+- Images in HTML output can be tricky. It depends on the size of the
+  image that you specify in your latex document, the "density" of the
+  gif image created from the eps file, and any scaling you might do.
+  The file misc/tex4ht.env contains commands and comments describing
+  some different options.
+
+
+MAKEFILE
+
+The makefile is set up to use pdflatex to generate PDF, and latex to
+generate DVI, PS, and HTML. See the documentation in the makefiles for
+descriptions of make targets.
+
+These makefiles were written for GNU make (may be called "make" or
+"gmake" on your system). If you don't have GNU make, you may want to
+try modifying the makefiles to work with your version of make. Change:
+
+  TEXFILES = $(shell ls source/*.tex)
+  DISTFILE = $(shell date +issre2001-%Y-%m-%d)
+  EPSFIGFILES = $(shell ls figures/*.eps)
+
+to:
+
+  TEXFILES:sh = ls source/*.tex
+  DISTFILE:sh = date +issre2001-%Y-%m-%d
+  EPSFIGFILES:sh = ls figures/*.eps
+
+your mileage may vary.
+
+
+HTML OUTPUT
+
+The makefile uses tex4ht to create the output. The misc directory
+includes a modified tex4ht.env which should produce better images.
+
+
+MAINTAINER
+
+David Coppit http://coppit.org/
+
+
+ORIGINAL AUTHORS
+
+David Coppit http://coppit.org/
+John Regehr http://regehr.org/john/
+
+
+TODO
+
+- Find a good, free method of generating pdf figures from eps figures
+  (distiller is the only method I know of which computes the right
+  bounding box.)

@@ -1,0 +1,45 @@
+\chapter{Conclusions and Future Work}
+\label{sec:conclusion}
+
+This thesis identified an exciting new problem
+of rate determination for L2 multipoint virtual topologies
+to serve variable-rate file streams to multiple receivers. Prior work
+on rate computation methods were designed for audio/video
+streams, not file streams. The problem is based on the need
+for scalability in a real deployment as data volumes and
+number of receivers have grown. Our solution was based, not
+on models, but on actual traffic characteristics. These
+characteristics, such as right-skewed file size and file
+inter-arrival times, and variability from day-to-day,
+are likely to hold for other types of file-streams.
+Our solution, based on an empirical method and an exponential weighted moving average scheme, could therefore have wide applicability.
+Evaluation of our method with real traffic showed that
+while throughput constraints can be met by selecting a suitably high
+rate, utilization varies based on the burstiness of the file stream.
+However, if rate-guaranteed Layer-2 services are offered
+on the same network as best-effort IP services, and packet schedulers
+are configured to operate in work-conserving mode, the utilization levels
+of the L2 multipoint topologies are not of concern. 
+We also found that for this application, required rates are only on
+the order of Mbps, which is a small fraction of current-day Gb/s networks.
+
+The thesis also described our experience in deploying a multi-domain SDN and testing
+a dynamic Layer-2 (L2) path service across this SDN. Our work demonstrated that inter-domain L2 paths can be created and released automatically, i.e., without administrator involvement, by using distributed per-domain SDN controllers.
+We offered insights into this complex deployment process
+and identified modifications required to the protocols and controllers
+for improved user experience and scalability of this dynamic L2 path service. We also developed a methodology for provisioning inter-domain multipoint VLANs, and demonstrated
+the successful use of these VLANs for a multicast application. Lessons learned include an understanding of the equipment
+and configuration steps required to enable dynamic L2 service in each domain, and an understanding of how to configure end-hosts to run existing applications, without modifications, across end-to-end L2 paths. We developed methods for debugging path-setup failures, and identified
+areas of improvement required in the controllers and in the administrative processes.
+
+Future work items include the (i) design and implementation of diagnostic tools to debug connectivity failures on VLANs, (ii) characterization of the rate at which feedtrees (the set of LDM servers subscribed to a feedtype) change in order to determine how often L2 multipoint VLANs would need modifications, and (iii) incorporation of an OESS client into LDM7 to enable the upstream LDM server to submit requests to OESS to dynamically create a new multipoint VLAN for a feedtype, release an existing multipoint VLAN if all subscriptions to a feedtype end, to add a provisioned VLAN segment from a downstream LDM7 server to an AL2S switch into an existing L2 multipoint VLAN across AL2S if a receiver subscribes a new feedtype, and to delete a provisioned VLAN segment when a downstream LDM7 server drops a subscription to a feedtype.
+
+
+
+
+
+
+
+
+
+

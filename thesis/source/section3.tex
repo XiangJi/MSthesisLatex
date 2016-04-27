@@ -1,0 +1,62 @@
+\chapter{A Multi-Domain SDN for Dynamic Layer-2 Path Service}
+\label{sec:DYNES}
+
+The term ``domain'' is used to represent a network that is owned and operated by
+a single organization, e.g., University of Virginia's domain, AT\&T's domain.
+To establish and release layer-2 VLANs that traverse multiple domains requires sophisticated
+control-plane operations.
+
+\section{Introduction}
+\input{DYNES-intro}
+
+
+
+\section{Background}
+\label{sec:control-plane}
+\input{DYNES-background.tex}
+
+\section{Multi-domain SDN}
+\label{sec:mdsdn}
+\input{DYNES-multi-domain-SDN}
+
+\section{Insights Gained}
+\label{sec:insights}
+\input{DYNES-insights}
+
+
+
+
+
+\section{Multi-point VLAN}
+\label{sec:mdvlan}
+\input{DYNES-multipoint-VLAN}
+
+\section{Related Work}
+Multiple projects were started during the 2003-2006 time frame to address the issue of dynamic provisioning of path-based networking service within the REN community. This work was motivated by a desire to develop alternatives and enhancements to best-effort IP service for large-bandwith science data flows. These
+include DOE funed OSCARS \cite{OSCARS}, UltraScience Net (USN) \cite{1541694}, TeraPaths \cite{4444698} and Lambda Station \cite{4374315} projects, and NSF Circuit-switched High-speed End-to-End Transport ArcHitecture (CHEETAH) \cite{1497551} and Dynamic Resource Allocation via GMPLS Optical Networks (DRAGON) \cite{4146687} projects. Further, an international
+collaboration between Europe's GEANT\footnote{http://services.geant.net/bod/Pages/Home.aspx}, Japan's JGN-X\footnote{http://www.jgn.nict.go.jp/english/index.html}, Canada's CANARIE\footnote{http://www.canarie.ca/en/home},
+and Brazil's RNP\footnote{http://www.rnp.br/en}, resulted in IDCP, which
+is used in OSCARS. The objective was to provide both packet service, e.g., best-effort IP, and dynamic path networking service over a common infrasturcture with the control-plane intelligence. This objective has been realized in DOE's Energy Sciences Network (ESNet), Internet2 on their ION and AL2S networks, and increasingly on university campuses and regionals as illustrated in Fig.~\ref{fig:network}. 
+
+The NSF Global Environment for Network Innovation (GENI) program\footnote{http://www.geni.net/} also supports the provisioning
+of Layer-2 SDNs through OpenFlow-enabled or other switches.
+Various controllers have been developed in the GENI program.
+For example, GENI Network Stitching Architecture
+allows for the creation of virtual network slices and virtual machines. Projects such as ProtoGENI\footnote{http://www.protogeni.net} and ExoGENI\footnote{http://www.exogeni.net} have developed proprietary multi-domain solutions to allocate internel network resources across their global footprints.
+The GENI infrastructure spans many domains, a.k.a. aggregates, to support large-scale virtual networks. The GENI goal, which is to support network researchers,
+is different from the goal of our multi-domain deployment,
+which is to bring dynamic L2 path service into every-day use by university
+scientists. This difference in goals allows for the use of a tree model
+in GENI stitching unlike the daisy-chain model of OSCARS. In the tree
+model, the client user needs to be independently authenticated by the aggregate managers controlling each domain. In contrast, the daisy-chain solution in OSCARS allows for a provider to have service-level agreements with neighbouring providers. Therefore, the OSCARS is more along the lines of the public switched telephone network and Internet, both of which successfully reached global scale.
+
+\section{Conclusions}
+This chapter described our experiences with deploying a multi-domain SDN and testing
+a dynamic Layer-2 (L2) path service across this SDN. Our work demonstrated that inter-domain point-to-point
+L2 paths can be created and released automatically, i.e., without administrator involvement, by using distributed per-domain SDN controllers. We offered insights into this complex deployment process
+and identified modifications required to the protocols and controllers
+for improving user experience and scalability of this dynamic L2 path service.
+We also developed a methodology for provisioning inter-domain multipoint VLANs, and demonstrated
+the successful use of these VLANs for a multicast application.
+
+%%%Talk about the multipoint VLAN 

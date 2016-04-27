@@ -1,0 +1,170 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: dissertation.aux
+The style file: IEEEtran.bst
+Database file #1: refs.bib
+Database file #2: IEEEabrv.bib
+Database file #3: References.bib
+I was expecting a `,' or a `}'---line 22 of file References.bib
+ :     
+ :     url ="http://meetings.internet2.edu/speakers/4236/"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 161 of file References.bib
+ : @inproceedings{6630542
+ :                       ,
+I'm skipping whatever remains of this entry
+You're missing a field name---line 182 of file References.bib
+ : 
+ : % url = {http://doi.acm.org/10.1145/2534695.2534699},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 836 of file References.bib
+ : @electronic{Internet2
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 846 of file References.bib
+ : @electronic{IDCP
+ :                 ,
+I'm skipping whatever remains of this entry
+"¨" immediately follows a field part---line 876 of file References.bib
+ :     pages = s11
+ :                ¨Cs17
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 883 of file References.bib
+ :     
+ :     volume = 51,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 893 of file References.bib
+ :     
+ :     volume = 48,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 924 of file References.bib
+ :     pages = 407
+ :                -421
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 934 of file References.bib
+ :     pages = 342
+ :                -356
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 953 of file References.bib
+ :     pages = 1142
+ :                 -1151
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1070 of file References.bib
+ : 
+ : @misc{Cybertrillion,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 1324 of file References.bib
+ : @misc{IDCP
+ :           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1330 of file References.bib
+ : @article{1742-6596-396-4-042065
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1345 of file References.bib
+ : @inproceedings{Kissel:2013:EWA:2534695.2534699
+ :                                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1376 of file References.bib
+ : @electronic{perfSONAR
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1425 of file References.bib
+ : @inproceedings{Jain:2013:BEG:2486001.2486019
+ :                                             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1676 of file References.bib
+ : @electronic{Internet2
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1726 of file References.bib
+ : @online{OSCARS
+ :               ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 1991 of file References.bib
+ : 
+ : year = "2005"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 2018 of file References.bib
+ :  number = 1
+ :            ",
+I'm skipping whatever remains of this entry
+Repeated entry---line 2103 of file References.bib
+ : @inproceedings{UVA-CTRQ2013
+ :                            ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 2185 of file References.bib
+ :  
+ :  year = "2010"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 2257 of file References.bib
+ : @misc{OpenFlow
+ :               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2262 of file References.bib
+ : @misc{SDNs
+ :           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 2386 of file References.bib
+ : @misc{IDCP
+ :           ,
+I'm skipping whatever remains of this entry
+Database file #4: base-refs.bib
+Repeated entry---line 18 of file base-refs.bib
+ : @article{6422287
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 233 of file base-refs.bib
+ : @electronic{Internet2
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 283 of file base-refs.bib
+ : @misc{OSCARS
+ :             ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 503 of file base-refs.bib
+ : @inproceedings{HTCP
+ :                    ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 548 of file base-refs.bib
+ : 
+ : year = "2005"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 575 of file base-refs.bib
+ :  number = 1
+ :            ",
+I'm skipping whatever remains of this entry
+Repeated entry---line 660 of file base-refs.bib
+ : @inproceedings{UVA-CTRQ2013
+ :                            ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 742 of file base-refs.bib
+ :  
+ :  year = "2010"
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 814 of file base-refs.bib
+ : @online{OpenFlow
+ :                 ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 819 of file base-refs.bib
+ : @misc{AL2S
+ :           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 947 of file base-refs.bib
+ : @misc{IDCP
+ :           ,
+I'm skipping whatever remains of this entry
+Database file #5: rfc.bib
+-- IEEEtran.bst version 1.13 (2008/09/30) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
+(There were 37 error messages)

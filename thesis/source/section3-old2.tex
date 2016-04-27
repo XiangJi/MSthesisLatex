@@ -1,0 +1,139 @@
+\chapter{A Multi-Domain SDN for Dynamic Layer-2 Path Service}
+\label{sec:DYNES}
+
+The term ``domain'' is used to represent a network that is owned and operated by
+a single organization, e.g., University of Virginia's domain, AT\&T's domain.
+To establish and release layer-2 VLANs that traverse multiple domains requires sophisticated
+control-plane operations.
+
+\section{Introduction}
+\input{DYNES-intro}
+
+
+
+\section{Background}
+\label{sec:control-plane}
+\input{DYNES-background.tex}
+
+\section{Multi-domain SDN}
+\label{sec:mdsdn}
+\input{DYNES-multi-domain-SDN}
+
+\section{Insights Gained}
+\label{sec:insights}
+\input{DYNES-insights}
+
+
+
+
+
+\section{Multi-point VLAN}
+\label{sec:mdvlan}
+
+\subsection{Control Plane Setup}
+\label{sec:controlplanefinal}
+A Multipoint VLAN can be created by OESS. However, the multipoint VLAN feature in OESS is only supported for intra-domain circuit. For provisioning a inter-domain multipoint VLAN, two steps are required. First, we created a local domain multipoint VLAN in AL2S OESS where multiple switches in different regions are selected as the endpoints. Second, we provisioned a point-to-point VLAN by OESS from the endpoint in each site to its regional network which is connected to AL2S switches. Fig.~\ref{fig:campus-regional} presents the campus-regional VLAN provisioning from UVA FDT to AL2S Ashburn switch.
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/UVA-ASHB.pdf}
+\caption{UVA DYNES - UVA campus – MARIA- ASHB}
+\label{fig:campus-regional}
+\end{figure}
+Fig.~\ref{fig:wanmulticast} shows a inter-domain multipoint VLAN setup among University of Virginia (UVA), Indiana University (IU), Mid-Atlantic Crossroads (MAX). AL2S OESS created a multipoint VLAN where the AL2S switches conducted the VLAN translation for packets came from each site. When the AL2S switch received packets with VLAN ID 336 from UVA, it made two copies of packets and set two different VLAN ID 2399, 1830, and forward the packets to IU and MAX.
+
+Fig.~\ref{fig:oessal2s} shows the endpoints and VLAN tags selection of a multipoint inter-domain path among UVA, MAX, and IU. Different VLAN tags are selected for the corresponding interfaces in each site.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/oess-AL2S.png}
+\caption{AL2S OESS: Endpoints and VLAN selection}
+\label{fig:oessal2s}
+\end{figure}
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/AL2S-mcast.pdf}
+\caption{AL2S inter-domain multipoint circuit experiment}
+\label{fig:wanmulticast}
+\end{figure}
+
+
+
+
+\subsection{Data Plane Experiments}
+\paragraph{Experimental Setup}
+Dynamic Network System (DYNES) \cite{1742-6596-396-4-042065}, an NSF funded nationwide cyber-instrument spanning about 40 US universities and 14 Internet2 connectors. A collaborative team including Internet2, Caltech, University of Michigan, and Vanderbilt University worked with regional networks and campuses to support large, long-distance scientific data flows and scientific community. DYNES testbed was used to run all the OpenFlow multicast experiments. Users are offered OESS Web GUI to provision dynamic multipoint layer-2 circuits. For my experiments, we setup a multipoint VLAN via AL2S OESS among five DYNES sites at (i) University of Virginia (UVA), Charlottesville, VA, (ii) Indiana University (IU), Indianapolis, IN, (iii) Mid-Atlantic Crossroads (MAX), College Park, MD, (iv) Rutgers University (Rutgers), New Brunswick, NJ (v) University of Wisconsin–Madison (UWisc), Madison, WI. Each DYNES FDT host has two Intel Xeon
+E5620 four-core processors (for a total of eight cores) and
+24 GiB of RAM.
+
+The software used in my experiments consists of: (i) IP multicast test program for sending and receiving multicast traffic.  (ii) Linux utility \texttt{vconfig} to configure VLAN tag for interface  (iii) Linux \texttt{ifconfig} to configure IP address and subnet mask for VLAN interface. (iv) Linux utility \texttt{ping} to test the reachability of a host. (v) Linux utility \texttt{tcpdump} to capture packet information of the multicast traffic packet with VLAN tag and multicast IP and MAC address.
+
+\paragraph{Experiments Execution and Results}
+First, we describe the local multipoint experiments workflow. Next, we present the inter-domain multipoint experiments results and our debugging experience.
+
+%%%%oess, fdt several sentences, mcast program
+
+First, A multicast test was conducted within a intra-domain multipoint topology showed in Fig.~\ref{fig:oesspoints}. After the multipoint circuit was created by OESS, several corresponding flow entries would be inserted into the flow table of UVA DYNES switch. As Fig.~\ref{fig:flowtable} shows, when the switch receives a packet from port Te 0/19 with VLAN tag 332, it will take the actions which set the VLAN id 332 and forward the packet to port Te 0/20, Te 0/22, Te 0/24. After the OpenFlow multipoint VLAN was set up, we configured VLAN interfaces at each hosts. The hosts configuration process is described in Section~\ref{sec:multidomain-SDN-FDT-access}. All the IP addresses of the hosts need to be private and within a same subnet. Next, we used \texttt{ping} utility to test the VLAN setup.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/flow-table.png}
+\caption{OpenFlow flow table entry of UVA DYNES switch}
+\label{fig:flowtable}
+\end{figure}
+
+Second, a IP multicast program was run to test the multipoint OpenFlow path. This IP multicast program is used for multicast testing
+over wide-area network. It includes a multicast sender and a multicast receiver,
+which can be compiled and executed on different Linux-based hosts over the wide-area environment.
+We executed the multicast sender in UVA FDT and multicast receivers in the other two local DYNES hosts(IDC and pS).
+As Fig.~\ref{fig:localmulticast} shows, the interfaces unicast IP addresses for sending or receiving the multicast should be specified as the first argument of the program. The reason for specifying the unicast IP address of the interface is so that multicast packets are sent to the interface with this IP address. This unicast IP address (10.30.32.20) identifies the interface. All multicast traffic generated in this socket will be output from the interface chosen. The multicast group IP address and port are the last two arguments. A UDP datagram socket is created using this multicast group IP address and port. In the code, after the UDP socket is created with the multicast IP address 233.0.225.123 and port 8888, \texttt{setsockopt} is called to set two parameters: interface and TTL.
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/local-multicast.png}
+\caption{UVA DYNES local multipoint experiment}
+\label{fig:localmulticast}
+\end{figure}
+
+A GLOP multicast IP address is used for the multicast test. The 233.0.0.0/8 GLOP address IP range was assigned as experimental multicast address space for IP multicast service providers and network researchers. The middle two octets of this block are formed from assigned 16-bit autonomous system number (ASN). 233.0.225.123 is used since the ASN of UVA is 225.  When UVA FDT sent the multicast packets with message ``Hello, multicast world!'', IDC and pS hosts received the message at the same time. However, when we changed the VLAN tags of these 3 interfaces to different values in local OESS, the related flow entries were not set in the flow table of UVA DYNES switch since multipoint VLAN tag translation feature was not supported in Dell S4810 OpenFlow 1.0 switch.
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/AL2Smulticast.png}
+\caption{AL2S inter-domain multipoint experiment}
+\label{fig:widemulticast}
+\end{figure}
+
+
+Finally, the inter-domain multi-point VLAN was tested by the IP multicast program. The control plane setup is described in Section~\ref{sec:controlplanefinal}. Fig.~\ref{fig:widemulticast} indicates the inter-domain multi-point VLAN is set up successfully. When UVA FDT was sending messages to the multicast group from the VLAN interface, both MAX FDT and IU FDT were receiving the ``Hello, multicast world!'' message at the same time.
+
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/pcap.png}
+\caption{Wireshark packets details of a pcap file}
+\label{fig:pcap}
+\end{figure}
+
+For verifying the experiment was multicasting over the inter-domain multi-point VLAN, packets were captured by \texttt{tcpdump} utility for analyzing purpose. Fig.~\ref{fig:pcap} shows the detailed packets information of the inter-domain multicast experiment. The pcap file was captured in UVA FDT VLAN 336 interface whose 802.1q VLAN ID is 336. The destination IP address 233.0.225.123 is the GLOP multicast IP address we used for the test. The destination MAC address is 01:00:5e:00:e1:7b which is mapping with the GLOP IP address. As Fig.~\ref{fig:mapping} the hard-wired mapping solution for multicast IP address is used. For unicast IP addresses, ARP is used to find the corresponding MAC address, because an IP address corresponds to a host (also one MAC address for one host). However, for multicast IP address , one multicast IP address (Class-D) is for a group of hosts in the multicast group, this group shares one multicast MAC address. All multicast receivers need to “accept” Ethernet frames with a given destination MAC address. Without multicast, each Ethernet NIC will only accept Ethernet frames whose destination MAC address equals its own unicast MAC address and frames with destination MAC address equal to FF:FF:FF:FF:FF:FF (broadcast). So when mcast code issues the ipm socket system calls, the code calls the Ethernet driver to add another entry: 01:00:5e:00:00:F5 to accept frames with this destination MAC address. Since a multicast frame needs to be accepted by all receivers, we can have only one multicast MAC address corresponding to a group. The multicast address mapping verified the experiment was multicasting over the multi-point VLAN.
+
+
+\begin{figure}[htb!]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/mapping.png}
+\caption{Multicast address mapping}
+\label{fig:mapping}
+\end{figure}
+
+
+\paragraph{Key Findings}
+The key finding of the experiments are (i) Multipoint VLAN with different VLAN tags cannot be provisioned by OpenFlow 1.0 supported switches, but AL2S switches support this feature. Thus, inter-domain multi-point VLAN service from AL2S can be used for wide-area multicast applications. (ii) Packets with the multicast destination IP address might be dropped by firewall in some regional networks.
+
+
+\section{Conclusions}
+This chapter described our experience in deploying a multi-domain SDN and testing
+a dynamic Layer-2 (L2) path service across this SDN. Our work demonstrated that inter-domain L2 paths can be created and released automatically, i.e., without administrator involvement, by using distributed per-domain SDN controllers.
+We offered insights into this complex deployment process
+and identified modifications required to the protocols and controllers
+for improved user experience and scalability of this dynamic L2 path service.
+
+%%%Talk about the multipoint VLAN 

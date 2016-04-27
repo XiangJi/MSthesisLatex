@@ -1,0 +1,13 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Size (in KiB; unless otherwise stated) statistics; June 2, 2014; S: Skewness (R type-1); CV: Coefficient of Variation; M in size: MiB; K and M in last row: $10^3$ and $10^6$, respectively, for number of files.\relax }}{12}{table.caption.9}
+\contentsline {table}{\numberline {2.2}{\ignorespaces Inter-arrival time statistics; June 2, 2014\relax }}{12}{table.caption.10}
+\contentsline {table}{\numberline {2.3}{\ignorespaces Notation\relax }}{17}{table.caption.15}
+\contentsline {table}{\numberline {2.4}{\ignorespaces June 2, 2014; Ideal path rate and buffer size in RR mode; $\mathbb {G}=10$ kbps; $\Theta $: mean multicast throughput; $\beta =0.05$\relax }}{23}{table.caption.16}
+\contentsline {table}{\numberline {2.5}{\ignorespaces June 2, 2014; Ideal path rate and buffer size in FCFS mode; $\Theta $: mean multicast throughput; $\alpha = 0.2$\relax }}{24}{table.caption.17}
+\contentsline {table}{\numberline {2.6}{\ignorespaces Ideal RR rate and buffer size computed with each day's data (post-facto); $\mathbb {G}=10$ kbps; $\beta =5\%$\relax }}{26}{table.caption.19}
+\contentsline {table}{\numberline {2.7}{\ignorespaces System performance with rate and buffer size computed using EWMA with $W=0$\relax }}{27}{table.caption.20}
+\contentsline {table}{\numberline {2.8}{\ignorespaces System performance with rate and buffer size computed using EWMA with $W=7$\relax }}{27}{table.caption.21}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

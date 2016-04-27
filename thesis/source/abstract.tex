@@ -1,0 +1,19 @@
+\chapter*{Abstract} 
+%%%%%For now just place holder
+In a meteorology data-distribution application, streams of files are served to hundreds of receivers every day on unicast TCP connections. Software Defined Networking (SDN) offers a more-scalable solution in which 
+a rate-guaranteed Layer-2 (L2) multipoint virtual topology can be provisioned to have switches perform Ethernet-frame
+multicasting to support this application. A characterization
+of the file streams shows that file sizes and
+file inter-arrival times are both right skewed.
+The objective of this thesis is to design an algorithm for determining
+the rate of the Layer-2 multipoint virtual topology, and the size
+of the sending-host buffer, based on
+traffic characteristics of the file streams and performance requirements.
+Furthermore, the traffic characteristics are not exactly the same
+from day-to-day. An empirical method is proposed to determine the ideal rate and buffer size based on a day's traffic, which are then used along with the current rate and buffer
+size in an Exponential Weighted Moving Average (EWMA) scheme to determine the rate and buffer size for the next day. Our method was
+evaluated using metadata obtained for the top five file-streams of this meteorological data distribution, and found to be effective.
+
+This thesis also describes our experience with deploying a multi-domain SDN that supports dynamic L2 path service, and offers insights gained from this experience. OpenFlow switches with two controllers, Open Exchange Software Suite (OESS) to perform intra-domain topology discovery and path provisioning actions, and On-Demand Secure Circuits and Advance Reservation System (OSCARS) for inter-domain provisioning, were deployed in several university campuses, and regional and core research-and-education networks (RENs). Our experience demonstrated that this architecture can support global-scale multi-domain dynamic L2 path service.  We identified modifications required to the protocols and controllers for improving user experience and scalability of this dynamic L2 path service. We also developed a methodology for provisioning inter-domain multipoint VLANs, and demonstrated the successful use of these VLANs for a multicast application.
+
+

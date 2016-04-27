@@ -1,0 +1,60 @@
+\frontmatter
+
+\input{title}
+
+\input{copyright}
+
+% no need for signatures in html
+\ifht\else
+\input{signatures}
+\fi
+
+\input{abstract}
+
+%\input{acknowledgments}
+
+%\input{quotes}
+
+% To help debug memory problems
+%\tracingstats=10
+
+% No need for explicit ToC since we've put t4ht in sectioning mode
+\ifht
+\else
+\tableofcontents
+\fi
+
+% Only output list of figures and list of tables in non-draft mode
+\ifdraft
+\else
+\listoffigures
+\listoftables
+\fi
+
+\backmatter
+\input{lists}
+
+\mainmatter
+
+\input{introduction}
+
+%\input{related}
+
+\input{section1}
+
+%\input{section2}
+
+\input{section3}
+
+\input{conclusion}
+
+\appendix
+
+\input{software}
+
+\backmatter
+\input {acknowledgments}
+
+
+\input{bibliography}
+
